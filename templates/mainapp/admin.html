@@ -1,0 +1,48 @@
+<!-- admin_dashboard.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        canvas {
+            max-width: 600px;
+            max-height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Admin Dashboard</h1>
+    <h2>Average Profit/Loss Over Time:</h2>
+    <canvas id="avgProfitLossChart"></canvas>
+
+    <script>
+        const traders = {{ traders|safe }};
+        const profitLossData = {{ profit_loss_data|safe }};
+        const timestamps = {{ timestamps|safe }};
+
+        const ctx = document.getElementById('avgProfitLossChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: timestamps,
+                datasets: [{
+                    label: 'Average Profit/Loss',
+                    data: profitLossData,
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
