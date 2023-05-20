@@ -14,19 +14,18 @@
 </head>
 <body>
     <h1>Admin Dashboard</h1>
-    <h2>Average Profit/Loss Over Time:</h2>
+    <h2>Average Profit/Trader:</h2>
     <canvas id="avgProfitLossChart"></canvas>
 
     <script>
         const traders = {{ traders|safe }};
         const profitLossData = {{ profit_loss_data|safe }};
-        const timestamps = {{ timestamps|safe }};
 
         const ctx = document.getElementById('avgProfitLossChart').getContext('2d');
         new Chart(ctx, {
-            type: 'line',
+            type: 'bar',
             data: {
-                labels: timestamps,
+                labels: traders,
                 datasets: [{
                     label: 'Average Profit/Loss',
                     data: profitLossData,

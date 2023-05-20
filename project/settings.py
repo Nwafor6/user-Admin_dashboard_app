@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "mainapp.apps.MainappConfig"
+    'djongo',
 ]
 
 MIDDLEWARE = [
@@ -46,7 +47,7 @@ ROOT_URLCONF = 'project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR/"tempaltes"],
+        'DIRS': [BASE_DIR/"templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -65,22 +66,22 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
 # DATABASES = {
-#         'default': {
-#             'ENGINE': 'djongo',
-#             'NAME': 'las4zan',
-#             'ENFORCE_SCHEMA': False,
-#             'CLIENT': {
-#                 'host': f"{MONGO_DB}"
-#             }  
-#         }
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
 # }
+DATABASES = {
+        'default': {
+            'ENGINE': 'djongo',
+            'NAME': 'las4zan',
+            'ENFORCE_SCHEMA': False,
+            'CLIENT': {
+                'host': f"{MONGO_DB}"
+            }  
+        }
+}
 
 
 # Password validation
