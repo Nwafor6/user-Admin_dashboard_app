@@ -28,8 +28,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    "mainapp.apps.MainappConfig"
-    'djongo',
+    "mainapp.apps.MainappConfig",
+    # 'djongo',
 ]
 
 MIDDLEWARE = [
@@ -66,22 +66,23 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
 DATABASES = {
-        'default': {
-            'ENGINE': 'djongo',
-            'NAME': 'las4zan',
-            'ENFORCE_SCHEMA': False,
-            'CLIENT': {
-                'host': f"{MONGO_DB}"
-            }  
-        }
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
+# from djongo import database
+# DATABASES = {
+#         'default': {
+#             'ENGINE': 'djongo',
+#             'NAME': 'las4zan',
+#             'ENFORCE_SCHEMA': False,
+#             'CLIENT': {
+#                 'host': 'mongodb://nwaforglory680:Nwafor6.com@ac-las4zan-shard-00-00.6ewghef.mongodb.net:27017,ac-las4zan-shard-00-01.6ewghef.mongodb.net:27017,ac-las4zan-shard-00-02.6ewghef.mongodb.net:27017/?ssl=true&replicaSet=atlas-chb13k-shard-0&authSource=admin&retryWrites=true&w=majority'
+#             }  
+#         }
+# }
 
 
 # Password validation
