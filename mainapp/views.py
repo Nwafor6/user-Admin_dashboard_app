@@ -10,18 +10,20 @@ import time
 import random
 # import datetime
 
+
 timestamp = datetime.now()
 timestamp_str = timestamp.strftime('%Y-%m-%d %H:%M:%S')
-uri = "mongodb+srv://nwaforglory680:Nwafor6.com@cluster0.6ewghef.mongodb.net/?retryWrites=true&w=majority"
-client = MongoClient(uri)
-dbname = client['mydb']
-TradersCollection = dbname["Traders"]
-TransactionCollection = dbname["Transactions"]
+
 
 # Function for users to access their dashboard
 def user_login(request): 
     if request.method =="POST":
         name=request.POST["name"]
+        uri = "mongodb+srv://nwaforglory680:Nwafor6.com@cluster0.6ewghef.mongodb.net/?retryWrites=true&w=majority"
+        client = MongoClient(uri)
+        dbname = client['mydb']
+        TradersCollection = dbname["Traders"]
+        TransactionCollection = dbname["Transactions"]
         trader= TradersCollection.find_one({
             "name":name,
         })
@@ -29,11 +31,16 @@ def user_login(request):
             print(trader["_id"], "Hello my ")
             return redirect("user_dashboard", trader["name"])
     
-    return render(request, 'mainapp/index.html')
+    return render(request, 'mainapp/login.html')
 
 # Fetch trader's details including transcation details
 def user_dashboard(request, user_name): 
-    trader= TradersCollection.find_one({
+    uri = "mongodb+srv://nwaforglory680:Nwafor6.com@cluster0.6ewghef.mongodb.net/?retryWrites=true&w=majority"
+    client = MongoClient(uri)
+    dbname = client['mydb']
+    TradersCollection = dbname["Traders"]
+    TransactionCollection = dbname["Transactions"]
+    trader=TradersCollection.find_one({
         "name":user_name,
     })
     transaction=TransactionCollection.find({"trader":trader["_id"]})
