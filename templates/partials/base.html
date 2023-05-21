@@ -16,7 +16,7 @@
   <body>
     <div class="nav_header">
       <div class="logo"><h3><b><i class="bi bi-currency-bitcoin"></i></b></h3></div>
-      <div class="profile_img"><small>Welcome <b>Trader A</b></small></div>
+      <div class="profile_img"><small>Welcome <b>{{name}}</b></small></div>
     </div>
     <div class="container">
       <div class="quick_links">
@@ -34,7 +34,7 @@
                   <h5><b>ID</b></h5>
                 </div>
                 <div class="header_title_value">
-                  <p>12345</p>
+                  <p>{{id}}</p>
               </div>
             </div>
           </div>
@@ -47,7 +47,7 @@
                   <h5><b>Username</b></h5>
                 </div>
                 <div class="header_title_value">
-                  <p>Trader A</p>
+                  <p>{{name}}</p>
                 </div>
             </div>
           </div>
@@ -60,7 +60,7 @@
                 <h5><b>Balance</b></h5>
               </div>
               <div class="header_title_value">
-                <p>$100</p>
+                <p>${{balance}}</p>
               </div>
           </div>
         </div>
@@ -99,7 +99,7 @@
                   <p>Trasaction History</p>
                 </div>
                 <div class="brk_dwn_heading">
-                  <iframe src="{%url 'user_dash'%}" width="100%" height="400" frameborder="0" scrolling="no">xfghdfjhdgcjdfgtg</iframe>
+                  <iframe src="http://127.0.0.1:8000/user_dash_plot/{{user}}" width="100%" height="400" frameborder="0" scrolling="no">xfghdfjhdgcjdfgtg</iframe>
                   <script>
                     
                       setInterval(function() {

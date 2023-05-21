@@ -43,32 +43,44 @@ def user_login(request):
     return render(request, 'mainapp/login.html')
 
 # Fetch trader's details including transcation details
-def user_dashboard(request, user_name):
-    # db=get_database_connection() 
-    # TradersCollection = db["Traders"]
-    # TransactionCollection = db["Transactions"]
-    # trader=TradersCollection.find_one({
-    #     "name":user_name,
-    # })
-    # transactions=TransactionCollection.find({"trader":trader["_id"]})
-    # print({"Trader":trader}, "Hello word")
-    # profit_loss_data=[]
-    # timestamps=[]
-    # for transaction in transactions:
-    # # Access the transaction data
-    #     profit_loss_data.append(transaction["amount"])
-    #     timestamps.append(transaction["timestamp"])
+def user_dashboard(request,user_name):
+    db=get_database_connection() 
+    TradersCollection = db["Traders"]
+    TransactionCollection = db["Transactions"]
+    trader=TradersCollection.find_one({
+        "name":user_name,
+    })
+    
     context = {
-        # 'name': trader["name"],
-        # 'balance': trader["balance"],
-        # 'profit_loss_data': profit_loss_data,
-        # 'timestamps': timestamps,
+        "user":user_name,
+        'name': trader["name"],
+        'balance': trader["balance"],
+        'id': trader["_id"],
     }
-
+    user_dash_plot(request, user_name)
     return render(request, 'partials/base.html', context)
 
-def user_dash(request):
-    return render(request, "partials/index.html", {"name":"Glory12"})
+def user_dash_plot(request,user_name):
+    db=get_database_connection() 
+    TradersCollection = db["Traders"]
+    TransactionCollection = db["Transactions"]
+    trader=TradersCollection.find_one({
+        "name":user_name,
+    })
+    transactions=TransactionCollection.find({"trader":trader["_id"]})
+    print({"Trader":trader}, "Hello word")
+    profit_loss_data=[]
+    timestamps=[]
+    for transaction in transactions:
+    # Access the transaction data
+        profit_loss_data.append(transaction["amount"])
+        timestamps.append(transaction["timestamp"])
+    context = {
+        'name': trader["name"],
+        'profit_loss_data': profit_loss_data,
+        'timestamps': timestamps,
+    }
+    return render(request, "partials/index.html", context)
 
 def admin_dashboard(request):
     traders = Trader.objects.all()
