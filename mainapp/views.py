@@ -84,20 +84,33 @@ def bgTransaction(request):
 
 def admin_dashboard(request):
     db=get_database_connection() 
-    TradersCollection = db["Traders"]
     TransactionCollection = db["Transactions"]
-    traders=TradersCollection.find_one({})
     transactions=TransactionCollection.find({})
     profit_loss_data = [transaction["amount"] for transaction in transactions]
-    traders_name = [trader["name"] for trader in traders ]
+    avg_profit_loss = sum(profit_loss_data) / len(profit_loss_data)
+    context = {
+        "avg_profit_loss":avg_profit_loss,
+    }
+    return render(request, 'partials/admin2.html', context)
+
+def admin_dash_plot(request):
+    db=get_database_connection() 
+    TradersCollection = db["Traders"]
+    TransactionCollection = db["Transactions"]
+    traders=TradersCollection.find({})
+    transactions=TransactionCollection.find({})
+    profit_loss_data = [transaction["amount"] for transaction in transactions]
+    traders_name = [trader["name"] for trader in traders]
     
-    avg_profit_loss = sum(transaction.amount for transaction in transactions) / len(transactions)
+    avg_profit_loss = sum(profit_loss_data) / len(profit_loss_data)
     context = {
         'traders': traders_name,
         'profit_loss_data': profit_loss_data,
+        "avg_profit_loss":avg_profit_loss,
     }
 
-    return render(request, 'mainapp/admin.html', context)
+    return render(request, 'partials/admin3.html', context)
+
 
 
 

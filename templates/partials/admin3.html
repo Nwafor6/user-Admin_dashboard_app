@@ -15,10 +15,10 @@
     <canvas id="avgProfitLossChart"></canvas>
    
     <script>
-        // const traders = {{ traders|safe }};
-        // const profitLossData = {{ profit_loss_data|safe }};
-        const traders = ["A","b",'C','D'];
-        const profitLossData = [-4.679903794819406, -5.656276318901083, 3.5429955141562814, 7.1375594656473105,];
+        const traders = {{ traders|safe }};
+        const profitLossData = {{ profit_loss_data|safe }};
+        // const traders = ["A","b",'C','D'];
+        // const profitLossData = [-4.679903794819406, -5.656276318901083, 3.5429955141562814, 7.1375594656473105,];
         const ctx = document.getElementById('avgProfitLossChart').getContext('2d');
         new Chart(ctx, {
             type: 'bar',
