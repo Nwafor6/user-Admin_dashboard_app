@@ -19,9 +19,13 @@
     </div>
     <div class="container">
       <div class="quick_links">
-        <div class="link"><button class="btn btn-primary bg-info">Lorem</button></div>
-        <div class="link"><button class="btn btn-primary bg-info">Lorem</button></div>
-        <div class="link"><button class="btn btn-primary bg-info">Lorem</button></div>
+        <form action="" method="post">
+          {%csrf_token%}
+          <input type="text" class="form-control" placeholder="Add Trader by name" name="name">
+          <span class="form-text">
+            Suggest format : Trader X
+          </span>
+        </form>
       </div>
       <div class="acct_info_holder row">
           <div class="link col-lg-3 col-md-6 col-sm-12 text-center">
@@ -102,7 +106,7 @@
                   <script>
                       setInterval(function() {
                           document.getElementsByTagName('iframe')[0].src += '';
-                      }, 6000);
+                      }, 60000);
                   </script>
                 </div>
               </div>

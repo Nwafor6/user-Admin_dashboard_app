@@ -11,7 +11,6 @@ from .db import get_database_connection
 from django.http import JsonResponse
 import time
 import random
-# import datetime
 
 
 timestamp = datetime.now()
@@ -91,6 +90,16 @@ def admin_dashboard(request):
     context = {
         "avg_profit_loss":avg_profit_loss,
     }
+    if request.method =="POST":
+        name=request.POST["name"]
+        TradersCollection = db["Traders"]
+        newTrader={
+            "name":name,
+            "amount":100,
+            "timestamp":timestamp_str
+        }
+        TradersCollection.insert_one(newTrader)
+
     return render(request, 'partials/admin2.html', context)
 
 def admin_dash_plot(request):
