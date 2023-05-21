@@ -99,13 +99,13 @@
                   <p>Trasaction History</p>
                 </div>
                 <div class="brk_dwn_heading">
-                  <iframe src="http://127.0.0.1:8000/user_dash_plot/{{user}}" width="100%" height="400" frameborder="0" scrolling="no">xfghdfjhdgcjdfgtg</iframe>
+                  <iframe src="http://127.0.0.1:8000/user_dash_plot/{{user}}"id="dashboard-iframe" width="100%" height="400" frameborder="0" scrolling="no"></iframe>
                   <script>
-                    
-                      setInterval(function() {
-                          document.getElementsByTagName('iframe')[0].src += '';
-                      }, 6000);
-                  </script>
+                    setInterval(function() {
+                        var iframe = document.getElementById('dashboard-iframe');
+                        iframe.src = iframe.src;
+                    }, 60000);
+                </script>
                 </div>
               </div>
             </div>

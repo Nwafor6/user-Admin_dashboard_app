@@ -6,6 +6,9 @@ from threading import Thread
 from time import perf_counter
 from pymongo.mongo_client import MongoClient
 from datetime import datetime
+from django.contrib import messages
+from .db import get_database_connection
+from django.http import JsonResponse
 import time
 import random
 # import datetime
@@ -13,18 +16,6 @@ import random
 
 timestamp = datetime.now()
 timestamp_str = timestamp.strftime('%Y-%m-%d %H:%M:%S')
-# Create a global variable to store the database connection
-db_connection = None
-
-def get_database_connection():
-    global db_connection
-
-    if db_connection is None:
-        # Create a new database connection
-        client = MongoClient("mongodb+srv://nwaforglory680:Nwafor6.com@cluster0.6ewghef.mongodb.net/?retryWrites=true&w=majority")
-        db_connection = client["mydb"]
-    
-    return db_connection
 
 # Function for users to access their dashboard
 def user_login(request): 
@@ -39,7 +30,7 @@ def user_login(request):
         if trader:
             print(trader["_id"], "Hello my ")
             return redirect("user_dashboard", trader["name"])
-    
+    messages.warning(request, 'Invalid user !!')
     return render(request, 'mainapp/login.html')
 
 # Fetch trader's details including transcation details
@@ -80,38 +71,36 @@ def user_dash_plot(request,user_name):
         'profit_loss_data': profit_loss_data,
         'timestamps': timestamps,
     }
+    thread=Thread(target=bgTransaction(request))
+    thread.start()
     return render(request, "partials/index.html", context)
-
-def admin_dashboard(request):
-    traders = Trader.objects.all()
-    profit_loss_data = []
-    timestamps = []
-    traders_=[]
-
-    for trader in traders:
-        transactions = trader.transaction_set.all()
-
-        # Calculate the average profit/loss for the trader
-        avg_profit_loss = sum(transaction.amount for transaction in transactions) / len(transactions)
-
-        profit_loss_data.append(avg_profit_loss)
-        timestamps.append(transactions[0].timestamp.strftime('%Y-%m-%d %H:%M:%S'))
-        traders_.append(trader.name)
-
-    context = {
-        'traders': traders_,
-        'profit_loss_data': profit_loss_data,
-        'timestamps': timestamps,
-    }
-
-    return render(request, 'mainapp/admin.html', context)
-
 
 # Function that makes trasactions for the stick trader
 def bgTransaction(request):
     thread=Thread(target=generate_data)
     thread.start()
-    return HttpResponse("Requested added to queue")
+    print("Tranfered request")
+    return JsonResponse({"detail":"Requested added to queue"})
+
+def admin_dashboard(request):
+    db=get_database_connection() 
+    TradersCollection = db["Traders"]
+    TransactionCollection = db["Transactions"]
+    traders=TradersCollection.find_one({})
+    transactions=TransactionCollection.find({})
+    profit_loss_data = [transaction["amount"] for transaction in transactions]
+    traders_name = [trader["name"] for trader in traders ]
+    
+    avg_profit_loss = sum(transaction.amount for transaction in transactions) / len(transactions)
+    context = {
+        'traders': traders_name,
+        'profit_loss_data': profit_loss_data,
+    }
+
+    return render(request, 'mainapp/admin.html', context)
+
+
+
 
 # def user_dashboard(request, pk):
     
