@@ -26,7 +26,6 @@ def generate_data():
         new_balance = _trader["balance"] + amount
         update_query={"$set":{"balance":new_balance}}
         TradersCollection.update_one(_trader, update_query)
-        # Sleep for one minute
         # Add to the transaction_collection
         transaction={
             "trader":_trader["_id"],
@@ -37,19 +36,5 @@ def generate_data():
         time.sleep(1)
     print("New Transcation")
 
-# def generate_data():
-#     traders = Trader.objects.all()
-#     for trader in traders:
-#         for _ in range(3):  # Generate 100 data points
-#             amount = random.uniform(-10, 10)  # Generate a random profit/loss value
-#             trader.balance += amount
-#             trader.save()
-#             transaction = Transaction(trader=trader, amount=amount)
-#             transaction.save()
-
-#             # Sleep for one minute
-#             print(transaction, "New Transcation")
-#             time.sleep(1)
-            
 
 
