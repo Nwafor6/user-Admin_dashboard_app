@@ -19,7 +19,7 @@ DEBUG = True
 ALLOWED_HOSTS = ["stocktradex.pythonanywhere.com",".vercel.app"]
 
 
-# Application definition
+# Application definition    
 MONGO_DB=config("MONGO_DB")
 INSTALLED_APPS = [
     'django.contrib.admin',
