@@ -2,7 +2,6 @@ import random
 from datetime import datetime, timedelta
 import os
 import django
-from django.conf import settings
 import pymongo
 from pymongo.mongo_client import MongoClient
 from datetime import datetime
