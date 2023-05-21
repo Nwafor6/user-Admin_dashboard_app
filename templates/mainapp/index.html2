@@ -1,0 +1,63 @@
+<!-- user_dashboard.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        canvas {
+            max-width: 600px;
+            max-height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome, {{ name }}!</h1>
+    <h1>Balance, {{ balance }}!</h1>
+    <h2>Your Profit/Loss Over Time:</h2>
+    <form  method="post">
+        {%csrf_token%}
+        <input type="text" name="name">
+        <input type="submit" value="submit">
+    </form>
+    <canvas id="profitLossChart"></canvas>
+    <iframe src="https://www.myschool.ng" width="100%" height="400" frameborder="0" scrolling="yes"></iframe>
+
+    <script>
+        setInterval(function() {
+            document.getElementsByTagName('iframe')[0].src += '';
+        }, 60000);
+    </script>
+
+    <script>
+        // const profitLossData = {{ profit_loss_data|safe }};
+        // const timestamps = {{ timestamps|safe }};
+        const profitLossData = [-4.679903794819406, -5.656276318901083, 3.5429955141562814, 7.1375594656473105, -7.806353619219877, 8.86990578779917];
+        const timestamps = ['2023-05-20 18:09:21', '2023-05-20 18:09:21', '2023-05-20 18:09:21', '2023-05-20 18:16:36', '2023-05-20 18:16:36', '2023-05-20 18:16:36'];
+
+
+        const ctx = document.getElementById('profitLossChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: timestamps,
+                datasets: [{
+                    label: 'Profit/Loss',
+                    data: profitLossData,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

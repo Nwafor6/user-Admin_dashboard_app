@@ -13,25 +13,15 @@
     </style>
 </head>
 <body>
-    <h1>Welcome, {{ trader.name }}!</h1>
-    <h2>Your Profit/Loss Over Time:</h2>
-    <form  method="post">
-        {%csrf_token%}
-        <input type="text" name="name">
-        <input type="submit" value="submit">
-    </form>
+    
     <canvas id="profitLossChart"></canvas>
-    <!-- <iframe src="https://www.google.com" width="100%" height="400" frameborder="0" scrolling="yes"></iframe> -->
-
-    <!-- <script>
-        setInterval(function() {
-            document.getElementsByTagName('iframe')[0].src += '';
-        }, 60000);
-    </script> -->
-
+    {{name}}
     <script>
-        const profitLossData = {{ profit_loss_data|safe }};
-        const timestamps = {{ timestamps|safe }};
+        // const profitLossData = {{ profit_loss_data|safe }};
+        // const timestamps = {{ timestamps|safe }};
+        const profitLossData = [-4.679903794819406, -5.656276318901083, 3.5429955141562814, 7.1375594656473105, -7.806353619219877, 8.86990578779917,-4.679903794819406, -5.656276318901083, 3.5429955141562814, 7.1375594656473105, -7.806353619219877, 8.86990578779917];
+        const timestamps = ['2023-05-20 18:09:21', '2023-05-20 18:09:21', '2023-05-20 18:09:21', '2023-05-20 18:16:36', '2023-05-20 18:16:36', '2023-05-20 18:16:36',];
+        console.log("Hello")
 
         const ctx = document.getElementById('profitLossChart').getContext('2d');
         new Chart(ctx, {

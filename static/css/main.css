@@ -1,0 +1,98 @@
+*{
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 1.5;
+    border: 0;
+}
+html, body, div, span, h1, h2, h3, h4, h5, h6, p, blockquote, a, img, ul, ol, li, form, label, input, textarea, button {
+    font-size: 16px;
+    font-weight: normal;
+    color: #333;
+}
+body{
+    background-color: rgb(245, 241, 241);}
+.nav_header{
+    background-color: white;
+    padding: 10px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.quick_links{
+    padding: 10px  0;
+    display: flex;
+    gap: 20px;
+}
+.quick_links button{
+    background-color: white;
+    border: 0;
+    padding: 7px;
+    border-radius: 5px;
+}
+.acct_info_holder{
+    display: flex;
+    justify-content: space-between;
+}
+.acct_info_holder .link{
+    padding-top: 10px;
+    padding: 10px;
+}
+.link .holder {
+    background-color: white;
+    padding-top: 10px;
+}
+.acct_info_holder .header_icon{
+    background-color: rgb(245, 241, 241);
+    margin: 0 auto;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    /* padding: 8px; */
+    text-align: center;
+    
+}
+.acct_info_holder ._icon{
+    width: 40px;
+    border-radius: 100%;
+}
+.header_title{
+    padding-top: 10px;
+    font-weight: bold;
+}
+/* .main_activity{
+    padding: 10px;
+} */
+.main_activity .activity_body{
+    background-color: white;
+    padding: 20px;
+}
+.base{
+    height: 250px;
+}
+.main_activity .top{
+    margin-bottom: 1px;
+}
+.activity_display{
+    display: flex;
+    /* flex-flow: wrap; */
+    gap: 1px;
+}
+@media(max-width:600px){
+    .activity_display{
+        flex-flow: wrap;
+    }
+}
+.activity{
+    width: 100%;
+}
+.bi{
+    font-size: 30px;
+    color: red;
+    font-weight: bold;
+}
