@@ -16,7 +16,7 @@ SECRET_KEY = config('DJANGO_SECRET_KEY',default='^4-737n**(f#lssg_(7zav%dg7@k=$7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["stocktrade.pythonanywhere.com"]
 
 
 # Application definition
