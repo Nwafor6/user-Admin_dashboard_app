@@ -1,7 +1,6 @@
 {
     "builds": [{
         "src": "vercel_app/wsgi.py",
-        "src2": "requirements.txt",
         "use": "@ardnt/vercel-python-wsgi",
         "config": { "maxLambdaSize": "15mb" }
     }],
