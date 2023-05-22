@@ -40,7 +40,7 @@ def user_dashboard(request,user_name):
     TradersCollection = db["Traders"]
     TransactionCollection = db["Transactions"]
     trader=TradersCollection.find_one({
-        "name":user_name,
+        "name":"Trade A",
     })
     
     context = {
@@ -57,7 +57,7 @@ def user_dash_plot(request,user_name):
     TradersCollection = db["Traders"]
     TransactionCollection = db["Transactions"]
     trader=TradersCollection.find_one({
-        "name":user_name,
+        "name":"Trade A",
     })
     transactions=TransactionCollection.find({"trader":trader["_id"]})
     print({"Trader":trader}, "Hello word")
