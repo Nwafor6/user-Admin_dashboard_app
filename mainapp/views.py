@@ -26,7 +26,9 @@ def user_login(request):
         trader= TradersCollection.find_one({
             "name":name,
         })
+        print(trader)
         if trader:
+            
             print(trader["_id"], "Hello my ")
             return redirect("user_dashboard", trader["name"])
         messages.warning(request, 'Invalid user !!')
