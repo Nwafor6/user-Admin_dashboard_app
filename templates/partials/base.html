@@ -46,7 +46,8 @@ body{
     gap: 20px;
 }
 .quick_links button{
-    background-color: white;
+    background-color: blue;
+    color: white !important;
     border: 0;
     padding: 7px;
     border-radius: 5px;
@@ -121,9 +122,9 @@ body{
     </div>
     <div class="container">
       <div class="quick_links">
-        <div class="link"><button class="btn btn-primary bg-info">Lorem</button></div>
-        <div class="link"><button class="btn btn-primary bg-info">Lorem</button></div>
-        <div class="link"><button class="btn btn-primary bg-info">Lorem</button></div>
+        <div class="link"><button class="btn ">Reliable</button></div>
+        <div class="link"><button class="btn ">Scalable</button></div>
+        <div class="link"><button class="btn ">Friendly</button></div>
       </div>
       <div class="acct_info_holder row">
           <div class="link col-lg-3 col-md-6 col-sm-12 text-center">
@@ -207,12 +208,28 @@ body{
                         iframe.src = iframe.src;
                     }, 60000);
                 </script>
-                </div>
-                <div class="brk_dwn_heading">
-                  <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                   Enlarge 
                 </button>
+                </div>
+                <div class="brk_dwn_heading">
+                  <!-- Button trigger modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <iframe src="https://stocktradex.vercel.app/user_dash_plot/{{user}}" width="100%" height="400" frameborder="0" scrolling="no"></iframe>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -228,19 +245,3 @@ body{
 </html>
 
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-xl">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <iframe src="https://stocktradex.vercel.app/user_dash_plot/{{user}}" width="100%" height="400" frameborder="0" scrolling="no"></iframe>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
