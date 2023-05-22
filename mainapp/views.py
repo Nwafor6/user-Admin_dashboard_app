@@ -20,11 +20,12 @@ timestamp_str = timestamp.strftime('%Y-%m-%d %H:%M:%S')
 def user_login(request): 
     if request.method =="POST":
         name=request.POST["name"]
+        print(name,"name of the user")
         db=get_database_connection()
         TradersCollection = db["Traders"]
         TransactionCollection = db["Transactions"]
         trader= TradersCollection.find_one({
-            "name":name,
+            "name":str(name),
         })
         print(trader)
         if trader:
@@ -40,7 +41,7 @@ def user_dashboard(request,user_name):
     TradersCollection = db["Traders"]
     TransactionCollection = db["Transactions"]
     trader=TradersCollection.find_one({
-        "name":"Trade A",
+        "name":user_name,
     })
     
     context = {
@@ -57,7 +58,7 @@ def user_dash_plot(request,user_name):
     TradersCollection = db["Traders"]
     TransactionCollection = db["Transactions"]
     trader=TradersCollection.find_one({
-        "name":"Trade A",
+        "name":user_name,
     })
     transactions=TransactionCollection.find({"trader":trader["_id"]})
     print({"Trader":trader}, "Hello word")
