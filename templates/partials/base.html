@@ -199,6 +199,7 @@ body{
                 <div class="brk_dwn_heading">
                   <h5><b>Profit & loss</b></h5>
                   <p>Trasaction History</p>
+                  <p><small style="color:red">Use Enlarge button below for Fullview.</small></p>
                 </div>
                 <div class="brk_dwn_heading">
                   <iframe src="https://stocktradex.vercel.app/user_dash_plot/{{user}}"id="dashboard-iframe" width="100%" height="400" frameborder="0" scrolling="no"></iframe>
@@ -208,17 +209,17 @@ body{
                         iframe.src = iframe.src;
                     }, 60000);
                 </script>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                  Enlarge 
-                </button>
                 </div>
                 <div class="brk_dwn_heading">
                   <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                  Enlarge 
+                </button>
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog modal-xl">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <h5 class="modal-title" id="exampleModalLabel"></h5>Your Transaction History </h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
                       <div class="modal-body">
