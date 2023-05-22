@@ -88,21 +88,22 @@ def admin_dashboard(request):
     TransactionCollection = db["Transactions"]
     transactions=TransactionCollection.find({})
     profit_loss_data = [transaction["amount"] for transaction in transactions]
-    avg_profit_loss = sum(profit_loss_data) / len(profit_loss_data)
-    context = {
-        "avg_profit_loss":avg_profit_loss,
-    }
+    # avg_profit_loss = sum(profit_loss_data) / len(profit_loss_data)
+    # context = {
+    #     "avg_profit_loss":avg_profit_loss,
+    # }
     if request.method =="POST":
         name=request.POST["name"]
         TradersCollection = db["Traders"]
         newTrader={
             "name":name,
             "amount":100,
+            "balance":100,
             "timestamp":timestamp_str
         }
         TradersCollection.insert_one(newTrader)
 
-    return render(request, 'partials/admin2.html', context)
+    return render(request, 'partials/admin2.html')
 
 def admin_dash_plot(request):
     db=get_database_connection() 

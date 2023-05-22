@@ -22,7 +22,7 @@ def generate_data():
         # Update the traders balance
         _trader=TradersCollection.find_one({"name":trader["name"]})
         amount = random.uniform(-10, 10)  # Generate a random profit/loss value
-        new_balance = _trader["balance"] + amount
+        new_balance = _trader['balance'] + amount
         update_query={"$set":{"balance":new_balance}}
         TradersCollection.update_one(_trader, update_query)
         # Add to the transaction_collection
